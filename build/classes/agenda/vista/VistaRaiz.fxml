@@ -9,25 +9,34 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Persona">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#handleNew" text="Nuevo" />
               <MenuItem mnemonicParsing="false" onAction="#handleOpen" text="Abrir" />
                   <MenuItem mnemonicParsing="false" onAction="#handleSave" text="Guardar" />
                   <MenuItem mnemonicParsing="false" onAction="#handleSaveAs" text="Guardar como" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleSave" text="Salir" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Salir" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+            <Menu mnemonicParsing="false" text="Anotacion">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleNew" text="Nuevo" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleOpenAnotaciones" text="Abrir" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSaveAnotaciones" text="Guardar" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSaveAsAnotaciones" text="Guardar como" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Salir" />
+               </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Ayuda">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Volver">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#manejadorBotonVolver" text="Volver" />
+               </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>

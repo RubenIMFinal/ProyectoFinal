@@ -1,5 +1,6 @@
 package agenda;
 
+import agenda.modelo.AnotacionListWrapper;
 import agenda.controlador.anotaciones.AnotacionesResumenController;
 import agenda.controlador.BaseController;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import agenda.modelo.Anotacion;
 import agenda.controlador.personas.PersonaResumenController;
 import agenda.controlador.personas.VentanaEditarPersonaController;
 import agenda.controlador.VistaPrincipalController;
+import agenda.controlador.anotaciones.NuevaAnotacionController;
 import agenda.modelo.PersonListWrapper;
 import java.io.File;
 import java.util.prefs.Preferences;
@@ -75,6 +77,7 @@ public class PrincipalApp extends Application {
         anotacionesInfo.add(new Anotacion("Titulo 5", "contenido de la anotación 5"));
         anotacionesInfo.add(new Anotacion("Titulo 6", "contenido de la anotación 6"));
         
+        
     }
     
     /**
@@ -117,7 +120,7 @@ public class PrincipalApp extends Application {
        
     
     /**
-     * Función para mostrar la vista resumen de una persona
+     * Función para mostrar la vista resumen de una anotacion
      */
     public void mostrarVistaAnotacionesResumen() {
         try {
@@ -138,7 +141,7 @@ public class PrincipalApp extends Application {
     }
     
     /**
-     * Función para mostrar la vista resumen de una persona
+     * Función para mostrar la vista principal para elegir o agenda o anotaciones
      */
     public void mostrarVistaPrincipal() {
         try {
@@ -195,6 +198,35 @@ public class PrincipalApp extends Application {
             return false;
         }
     }
+//    public boolean mostrarVentanaEditarAnotacion(Anotacion nota){
+//    try {
+//        // Load the fxml file and create a new stage for the popup dialog.
+//        FXMLLoader loader = new FXMLLoader();
+//        loader.setLocation(PrincipalApp.class.getResource("vista/anotaciones/NuevaANotacion.fxml"));
+//        AnchorPane page = (AnchorPane) loader.load();
+//
+//        // Create the dialog Stage.
+//        Stage dialogStage = new Stage();
+//        dialogStage.setTitle("Editar Nota");
+//        dialogStage.initModality(Modality.WINDOW_MODAL);
+//        dialogStage.initOwner(escenarioPrincipal);
+//        Scene scene = new Scene(page);
+//        dialogStage.setScene(scene);
+//
+//        // Set the person into the controller.
+//        NuevaAnotacionController controller = loader.getController();
+//        controller.setEscenarioVentana(dialogStage);
+//        controller.setNota(nota);
+//
+//        // Show the dialog and wait until the user closes it
+//        dialogStage.showAndWait();
+//
+//        return controller.isOkClicked();
+//    } catch (IOException e) {
+//        e.printStackTrace();
+//        return false;
+//    }
+//    }
 
     /**
      * Obtener el escenario principal.
@@ -288,12 +320,6 @@ public class PrincipalApp extends Application {
         return null;
     }
 }
-    
-    
-    
-    
-    
-    
     //ruben avance para el toolbar:
     
     public void setPersonFilePath(File file) {
@@ -311,9 +337,8 @@ public class PrincipalApp extends Application {
     }
 }
     
-    
-    
-    //Rubén avance, para el toolbar, para handleopen
+
+    //Rubén avance, para el toolbar, para handleopen Persona
     public void loadPersonDataFromFile(File file) {
     try {
         JAXBContext context = JAXBContext
@@ -339,6 +364,32 @@ public class PrincipalApp extends Application {
     }
 }
     
+        //Rubén avance, para el toolbar, para handleopen Anotacion
+    public void loadAnotacionDataFromFile(File file) {
+    try {
+        JAXBContext context = JAXBContext
+                .newInstance(AnotacionListWrapper.class);
+        Unmarshaller um = context.createUnmarshaller();
+
+        // Reading XML from the file and unmarshalling.
+        AnotacionListWrapper wrapper = (AnotacionListWrapper) um.unmarshal(file);
+
+        anotacionesInfo.clear();
+        anotacionesInfo.addAll(wrapper.getNotas());
+
+        // Save the file path to the registry.
+        setPersonFilePath(file);
+
+    } catch (Exception e) { // catches ANY exception
+     
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Error");
+        alert.setHeaderText("Could not load data from file:\n" + file.getPath());
+        alert.setContentText("Please select a person in the table.");
+        alert.showAndWait();
+    }
+}
+    
     //Rubén, hay que seguir con savePersonDataFile, 
     
     public void savePersonDataToFile(File file) {
@@ -350,6 +401,31 @@ public class PrincipalApp extends Application {
         // Wrapping our person data.
         PersonListWrapper wrapper = new PersonListWrapper();
         wrapper.setPersons(personasInfo);
+
+        // Marshalling and saving XML to the file.
+        m.marshal(wrapper, file);
+
+        // Save the file path to the registry.
+        setPersonFilePath(file);
+    } catch (Exception e) { // catches ANY exception
+        
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setHeaderText("Could not load data from file:\n" + file.getPath());
+            alert.setContentText("Please select a person in the table.");
+            alert.showAndWait();
+    }
+}
+    
+       public void saveAnotacionDataToFile(File file) {
+    try {
+        JAXBContext context = JAXBContext.newInstance(AnotacionListWrapper.class);
+        Marshaller m = context.createMarshaller();
+        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+        // Wrapping our person data.
+        AnotacionListWrapper wrapper = new AnotacionListWrapper();
+        wrapper.setAnotacion(anotacionesInfo);
 
         // Marshalling and saving XML to the file.
         m.marshal(wrapper, file);

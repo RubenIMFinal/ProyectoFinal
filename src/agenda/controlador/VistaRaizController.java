@@ -28,7 +28,7 @@ public class VistaRaizController {
     // Reference to the main application
     private PrincipalApp mainApp;
 
-    private PersonaResumenController personController;
+
     /**
      * Is called by the main application to give a reference back to itself.
      * 
@@ -43,7 +43,16 @@ public class VistaRaizController {
     private void handleNew() {
         
         mainApp.getPersonasInfo().clear();
+        mainApp.setPersonFilePath(null);
+ 
+        //mainApp.setPersonFilePath(null); //esta parte es la que tenía yo antes.
+    }
+        @FXML
+    private void handleNewAnotaciones() {
+        
         mainApp.getAnotacionesInfo().clear();
+        mainApp.setPersonFilePath(null);
+
         //mainApp.setPersonFilePath(null); //esta parte es la que tenía yo antes.
     }
 
@@ -64,6 +73,23 @@ public class VistaRaizController {
             mainApp.loadPersonDataFromFile(file);
         }
     }
+    
+    @FXML
+    private void handleOpenAnotaciones() {
+        FileChooser fileChooser = new FileChooser();
+
+        // Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                "XML files (*.xml)", "*.xml");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        // Show save file dialog
+        File file = fileChooser.showOpenDialog(mainApp.getEscenarioPrincipal());
+
+        if (file != null) {
+            mainApp.loadAnotacionDataFromFile(file);
+        }
+    }
 
     
     @FXML
@@ -71,6 +97,16 @@ public class VistaRaizController {
         File personFile = mainApp.getPersonFilePath();
         if (personFile != null) {
             mainApp.savePersonDataToFile(personFile);
+        } else {
+            handleSaveAs();
+        }
+    }
+    
+        @FXML
+    private void handleSaveAnotaciones() {
+        File notasFile = mainApp.getPersonFilePath();
+        if (notasFile != null) {
+            mainApp.saveAnotacionDataToFile(notasFile);
         } else {
             handleSaveAs();
         }
@@ -97,11 +133,32 @@ public class VistaRaizController {
             mainApp.savePersonDataToFile(file);
         }
     }
+    
+        @FXML
+    private void handleSaveAsAnotaciones() {
+        FileChooser fileChooser = new FileChooser();
+
+        // Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                "XML files (*.xml)", "*.xml");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        // Show save file dialog
+        File file = fileChooser.showSaveDialog(mainApp.getEscenarioPrincipal());
+
+        if (file != null) {
+            // Make sure it has the correct extension
+            if (!file.getPath().endsWith(".xml")) {
+                file = new File(file.getPath() + ".xml");
+            }
+            mainApp.saveAnotacionDataToFile(file);
+        }
+    }
 
    
     @FXML
     private void handleAbout() {        
-        Alert alert = new Alert(AlertType.WARNING);
+        Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("AddressApp");
         alert.setHeaderText(null);
         alert.setContentText("Creado por Rubén Izquierdo.");
@@ -112,5 +169,11 @@ public class VistaRaizController {
     @FXML
     private void handleExit() {
         System.exit(0);
+    }
+    
+        @FXML
+    private void manejadorBotonVolver() {
+        
+        mainApp.mostrarVistaPrincipal();
     }
 }

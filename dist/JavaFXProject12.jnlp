@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="JavaFXProject12.jar" size="528254" download="eager" />
+    <jar href="JavaFXProject12.jar" size="534122" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="agenda.PrincipalApp"  name="JavaFXProject12" />
   <update check="always"/>

@@ -8,6 +8,7 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -25,9 +26,9 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <TableView prefHeight="398.0" prefWidth="298.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <TableView fx:id="tablaAnotaciones" prefHeight="398.0" prefWidth="298.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columns>
-                                  <TableColumn prefWidth="313.0" text="Anotaciones" />
+                                  <TableColumn fx:id="columnaTitulo" prefWidth="313.0" text="Anotaciones" />
                                 </columns>
                               </TableView>
                            </children>
@@ -38,12 +39,13 @@
                                  <buttons>
                                     <HBox alignment="CENTER" prefHeight="71.0" prefWidth="341.0">
                                        <children>
-                                          <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="89.0" text="Eliminar">
+                                          <Button mnemonicParsing="false" onAction="#manejadorBotonEliminar" prefHeight="39.0" prefWidth="89.0" text="Eliminar">
                                              <HBox.margin>
                                                 <Insets left="10.0" right="30.0" />
                                              </HBox.margin>
                                           </Button>
-                                        <Button contentDisplay="CENTER" minWidth="77.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="93.0" text="Añadir" textAlignment="CENTER">
+                                          <Button mnemonicParsing="false" onAction="#manejadorEditarAnotacion" prefHeight="42.0" prefWidth="87.0" text="Editar" />
+                                        <Button contentDisplay="CENTER" minWidth="77.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#manejadorBotonAnadir" prefHeight="40.0" prefWidth="110.0" text="Añadir" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets left="20.0" />
                                              </HBox.margin>
@@ -87,21 +89,9 @@
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <AnchorPane prefHeight="233.0" prefWidth="217.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
-                           <children>
-                              <Label prefHeight="233.0" prefWidth="310.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                        <Label prefHeight="16.0" prefWidth="225.0" GridPane.columnIndex="1">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label prefHeight="16.0" prefWidth="227.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Label>
+                        <TextField fx:id="titulo" GridPane.columnIndex="1" />
+                        <TextField fx:id="fecha" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="descripcion" prefHeight="233.0" prefWidth="480.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                   <Button fx:id="boton_volver" layoutX="485.0" layoutY="11.0" mnemonicParsing="false" onAction="#manejadorBotonVolver" prefHeight="32.0" prefWidth="73.0" text="Volver" />

@@ -3,8 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/desarrollo/Descargas/mi-agenda/src/agenda/vista/VistaRaiz.fxml</file>
+            <file>file:/home/desarrollo/Descargas/mi-agenda/src/agenda/controlador/VistaRaizController.java</file>
             <file>file:/home/desarrollo/Descargas/mi-agenda/src/agenda/PrincipalApp.java</file>
             <file>file:/home/desarrollo/Descargas/mi-agenda/src/agenda/controlador/anotaciones/AnotacionesResumenController.java</file>
+            <file>file:/home/desarrollo/Descargas/mi-agenda/src/agenda/controlador/personas/PersonaResumenController.java</file>
+            <file>file:/home/desarrollo/Descargas/mi-agenda/src/agenda/modelo/AnotacionListWrapper.java</file>
         </group>
     </open-files>
 </project-private>

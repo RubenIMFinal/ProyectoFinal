@@ -74,4 +74,10 @@ public class Anotacion {
     public ObjectProperty<LocalDate> fechaProperty() {
         return fecha;
     }
+
+    @Override
+    public String toString() {
+        return "Anotacion{" + "titulo=" + titulo + ", descripcion=" + descripcion + ", fecha=" + fecha + '}';
+    }
+    
 }
