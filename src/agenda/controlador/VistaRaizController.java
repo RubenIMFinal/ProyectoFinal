@@ -47,16 +47,14 @@ public class VistaRaizController {
  
         //mainApp.setPersonFilePath(null); //esta parte es la que tenía yo antes.
     }
-        @FXML
+    @FXML
     private void handleNewAnotaciones() {
         
         mainApp.getAnotacionesInfo().clear();
         mainApp.setPersonFilePath(null);
 
-        //mainApp.setPersonFilePath(null); //esta parte es la que tenía yo antes.
-    }
-
-   
+    } 
+    
     @FXML
     private void handleOpen() {
         FileChooser fileChooser = new FileChooser();
@@ -159,7 +157,7 @@ public class VistaRaizController {
     @FXML
     private void handleAbout() {        
         Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("AddressApp");
+        alert.setTitle("Proyecto Desarrollo Interfaces");
         alert.setHeaderText(null);
         alert.setContentText("Creado por Rubén Izquierdo.");
         alert.showAndWait(); 
@@ -171,7 +169,8 @@ public class VistaRaizController {
         System.exit(0);
     }
     
-        @FXML
+    //No funciona ¿?
+    @FXML
     private void manejadorBotonVolver() {
         
         mainApp.mostrarVistaPrincipal();

@@ -310,8 +310,9 @@ public class PrincipalApp extends Application {
     }
     */
     //ruben, avance para el toolbar:
+    //Para obtener el fichero. Si no hay fichero, devuelve null.
     
-        public File getPersonFilePath() {
+    public File getPersonFilePath() {
     Preferences prefs = Preferences.userNodeForPackage(PrincipalApp.class);
     String filePath = prefs.get("filePath", null);
     if (filePath != null) {
@@ -321,6 +322,7 @@ public class PrincipalApp extends Application {
     }
 }
     //ruben avance para el toolbar:
+        //Para establecer la ruta del fichero cargado.
     
     public void setPersonFilePath(File file) {
     Preferences prefs = Preferences.userNodeForPackage(PrincipalApp.class);
@@ -339,6 +341,7 @@ public class PrincipalApp extends Application {
     
 
     //Rubén avance, para el toolbar, para handleopen Persona
+    //Carga los datos de una persona desde el fichero seleccionado reemplazando los establecidos.
     public void loadPersonDataFromFile(File file) {
     try {
         JAXBContext context = JAXBContext
@@ -364,7 +367,8 @@ public class PrincipalApp extends Application {
     }
 }
     
-        //Rubén avance, para el toolbar, para handleopen Anotacion
+        //Rubén avance, para el toolbar, para handleopen Anotacion.
+    //Carga los datos de la nota seleccionada reemplazando los anteriores.
     public void loadAnotacionDataFromFile(File file) {
     try {
         JAXBContext context = JAXBContext
@@ -390,7 +394,7 @@ public class PrincipalApp extends Application {
     }
 }
     
-    //Rubén, hay que seguir con savePersonDataFile, 
+    //Rubén >---> savePersonDataFile, para guardar los datos.
     
     public void savePersonDataToFile(File file) {
     try {
@@ -417,7 +421,7 @@ public class PrincipalApp extends Application {
     }
 }
     
-       public void saveAnotacionDataToFile(File file) {
+    public void saveAnotacionDataToFile(File file) {
     try {
         JAXBContext context = JAXBContext.newInstance(AnotacionListWrapper.class);
         Marshaller m = context.createMarshaller();
